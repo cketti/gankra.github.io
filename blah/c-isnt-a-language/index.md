@@ -307,7 +307,7 @@ Except you still have a compatibility hazard: anyone who compiles against your n
 
 This isn't a deal breaker though, it just makes platform vendors *sad* that no one gets to use the thing they spent so much time working on right away. You have to ship a shiny new feature and then sit on your hands for several years while everyone waits for it to be common/mature enough that people are willing to depend on it and break support for older platforms (or are willing to implement dynamic checking and fallback for it).
 
-If you get really serious about letting people upgrade right away, then you're talking about *forward* compatability. This lets older versions of things somehow work with newer features that they have no conception of.
+If you get really serious about letting people upgrade right away, then you're talking about *forward* compatibility. This lets older versions of things somehow work with newer features that they have no conception of.
 
 
 
@@ -345,7 +345,7 @@ Common forward-compatible tricks include:
 
 ## Case Study: MINIDUMP_HANDLE_DATA
 
-Microsoft is genuinely a master of this forward-compatability fuckery, to the extent that they even keep stuff they really care about layout-compatible *between architectures*. An example I've recently been working with is [MINIDUMP_HANDLE_DATA_STREAM](https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_handle_data_stream) in `Minidumpapiset.h`.
+Microsoft is genuinely a master of this forward-compatibility fuckery, to the extent that they even keep stuff they really care about layout-compatible *between architectures*. An example I've recently been working with is [MINIDUMP_HANDLE_DATA_STREAM](https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_handle_data_stream) in `Minidumpapiset.h`.
 
 This API describes a versioned list of values. The list starts with this type:
 

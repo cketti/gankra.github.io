@@ -232,7 +232,7 @@ callee: [38, 39, 3A, 3B, 3C, 3D, 3E, 3F, 40, 41, 42, 43, 44, 45, 46, 47]
 <p>Then when you decide Actually It Should Use <code>int64_t</code> then you can make <code>int64_t my_rad_symbol(int64_t)</code> as <code>my_rad_symbol_v2</code> <em>but keep around the old definition</em> as <code>my_rad_symbol_v1</code>. Anyone who compiles against newer versions of your header will happily use the v2 symbol, while anyone compiled against the older version will continue to use v1!</p>
 <p>Except you still have a compatibility hazard: anyone who compiles against your new header can’t link against the old version of your library! The v1 version of your library simply <em>doesn’t</em> have the v2 symbol! So if you want the Hot New Features you need to accept incompatibility with older outdated systems.</p>
 <p>This isn’t a deal breaker though, it just makes platform vendors <em>sad</em> that no one gets to use the thing they spent so much time working on right away. You have to ship a shiny new feature and then sit on your hands for several years while everyone waits for it to be common/mature enough that people are willing to depend on it and break support for older platforms (or are willing to implement dynamic checking and fallback for it).</p>
-<p>If you get really serious about letting people upgrade right away, then you’re talking about <em>forward</em> compatability. This lets older versions of things somehow work with newer features that they have no conception of.</p>
+<p>If you get really serious about letting people upgrade right away, then you’re talking about <em>forward</em> compatibility. This lets older versions of things somehow work with newer features that they have no conception of.</p>
 <h1 id="changing-types-without-breaking-abis" class="section-header"><a href="#changing-types-without-breaking-abis">Changing Types Without Breaking ABIs</a></h1>
 <p>Ok so we can change the signature of a function, what else can we change? Can we change type layouts?</p>
 <p>Yes! But also, No! It depends on how you expose the type.</p>
@@ -256,7 +256,7 @@ callee: [38, 39, 3A, 3B, 3C, 3D, 3E, 3F, 40, 41, 42, 43, 44, 45, 46, 47]
 <li>Having self-size fields so older versions can “skip over” the new parts</li>
 </ul>
 <h2 id="case-study-minidump_handle_data" class="section-header"><a href="#case-study-minidump_handle_data">Case Study: MINIDUMP_HANDLE_DATA</a></h2>
-<p>Microsoft is genuinely a master of this forward-compatability fuckery, to the extent that they even keep stuff they really care about layout-compatible <em>between architectures</em>. An example I’ve recently been working with is <a href="https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_handle_data_stream">MINIDUMP_HANDLE_DATA_STREAM</a> in <code>Minidumpapiset.h</code>.</p>
+<p>Microsoft is genuinely a master of this forward-compatibility fuckery, to the extent that they even keep stuff they really care about layout-compatible <em>between architectures</em>. An example I’ve recently been working with is <a href="https://docs.microsoft.com/en-us/windows/win32/api/minidumpapiset/ns-minidumpapiset-minidump_handle_data_stream">MINIDUMP_HANDLE_DATA_STREAM</a> in <code>Minidumpapiset.h</code>.</p>
 <p>This API describes a versioned list of values. The list starts with this type:</p>
 <div class="example-wrap"><pre class="language-C"><code>typedef struct _MINIDUMP_HANDLE_DATA_STREAM {
     ULONG32 SizeOfHeader;
